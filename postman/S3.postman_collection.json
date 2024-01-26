@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "1cefb692-d160-41a0-bd01-0e9788d00ac9",
+		"name": "S3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25848588"
+	},
+	"item": [
+		{
+			"name": "New",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": "localhost:8080/api/v1/rent"
+			},
+			"response": []
+		},
+		{
+			"name": "Start",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/v1/rent_start"
+			},
+			"response": []
+		},
+		{
+			"name": "uploadphoto",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
