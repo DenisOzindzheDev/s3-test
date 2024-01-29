@@ -10,6 +10,7 @@ LABEL Author = "denis.ozindzhe@tages.ru"
 WORKDIR /app
 COPY . . 
 
+RUN go mod vendor
 RUN go mod download
 RUN go build -o s3-test cmd/main.go
 

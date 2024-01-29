@@ -148,6 +148,7 @@ func (s *Server) uploadPhoto(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Wrong request!", http.StatusBadRequest)
 		return
 	}
+	defer src.Close()
 
 	rentInfo, err := s.core.RentInfo(rentID)
 	if err != nil {
@@ -161,7 +162,6 @@ func (s *Server) uploadPhoto(w http.ResponseWriter, r *http.Request) {
 		PayloadSize: hdr.Size,
 		User:        rentInfo.User,
 	}
-	defer src.Close()
 
 	err = s.core.UploadPhoto(r.Context(), img, rentID)
 	if err != nil {

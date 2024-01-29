@@ -33,6 +33,25 @@ services:
         limits:
           cpus: '1'
           memory: 4G
+  application:
+    image: s3test:1.0.0
+    restart: unless-stopped
+    networks:
+      - app-network
+    environment:
+      SERVER_PORT: :8080
+      DB_CONNECTION_STRING: user=postgres password=postgres dbname=postgres host=localhost port=5432 sslmode=disable
+      MINIO_HOST: minio:9000
+      MINIO_USER: root
+      MINIO_ACCESS_KEY: password
+    depends_on:
+      - db
+      - minio
+networks:
+  app-network:
+    driver: bridge
+
+
 volumes:
   minio:
     driver: local

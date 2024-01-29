@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	restapi "s3-test/internal/api"
 	"s3-test/internal/application"
 	"s3-test/internal/db/postgres"
@@ -9,18 +10,16 @@ import (
 )
 
 func main() {
-	//creds minio
-	//endpoint := "http://localhost:9000"
 	filestore, err := provider.NewMinioProvider(
-		"localhost:9000",
-		"root",
-		"password",
+		os.Getenv("MINIO_HOST"),
+		os.Getenv("MINIO_USER"),
+		os.Getenv("MINIO_ACCES_KEY"),
 		false,
 	)
 	if err != nil {
 		log.Fatal(err)
 	}
-	db, cls, err := postgres.NewDataBase("user=postgres password=postgres dbname=postgres host=localhost port=5432 sslmode=disable")
+	db, cls, err := postgres.NewDataBase(os.Getenv("DB_CONNECTION_STRING"))
 	if err != nil {
 		log.Fatal(err)
 	}
